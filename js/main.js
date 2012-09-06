@@ -1,3 +1,0 @@
-$(function() {
-    $('.editable-row').rowEditor();
-});
