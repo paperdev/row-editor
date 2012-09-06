@@ -3,27 +3,27 @@
    ========================================================================== */
 
 #content {
-	font-size: 12px;
-	width: 800px;
-	margin: 20px auto 0;
+    font-size: 12px;
+    width: 800px;
+    margin: 20px auto 0;
 }
 
 .row-edit-table {
-	width: 100%;
+    width: 100%;
 }
 
 .row-edit-table tr th {
-	text-align: left;
+    text-align: left;
 }
 
 .row-edit-table tr th,
 .row-edit-table tr td {
-	padding: 5px;
-	vertical-align: middle;
+    padding: 5px;
+    vertical-align: middle;
 }
 
 .row-edit-table tbody tr:nth-child(odd) {
-	background: #eee;
+    background: #eee;
 }
 
 /* ==========================================================================
@@ -31,5 +31,5 @@
    ========================================================================== */
 
 .re-editor {
-	display: none;
+    display: none;
 }

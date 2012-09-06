@@ -10,21 +10,21 @@ Plugin for editing table rows with ajax data save.
 ...
 
 <td>
-	<span class="re-view">Some text</span>
-	<div class="re-editor">
-		<input type="text" name="text">
-	</div>
+    <span class="re-view">Some text</span>
+    <div class="re-editor">
+        <input type="text" name="text">
+    </div>
 </td>
 
 <td>
-	<span class="re-view">Value 1</span>
-	<div class="re-editor">
-		<select name="select">
-			<option value="Value 1">Value 1</option>
-			<option value="Value 2">Value 2</option>
-			<option value="Value 3">Value 3</option>
-		</select>
-	</div>
+    <span class="re-view">Value 1</span>
+    <div class="re-editor">
+        <select name="select">
+            <option value="Value 1">Value 1</option>
+            <option value="Value 2">Value 2</option>
+            <option value="Value 3">Value 3</option>
+        </select>
+    </div>
 </td>
 
 ....
