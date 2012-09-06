@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+#content {
+	font-size: 12px;
+	width: 800px;
+	margin: 20px auto 0;
+}
+
+.row-edit-table {
+	width: 100%;
+}
+
+.row-edit-table tr th {
+	text-align: left;
+}
+
+.row-edit-table tr th,
+.row-edit-table tr td {
+	padding: 5px;
+	vertical-align: middle;
+}
+
+.row-edit-table tbody tr:nth-child(odd) {
+	background: #eee;
+}
+
+/* ==========================================================================
+   Row Editor styles
+   ========================================================================== */
+
+.re-editor {
+	display: none;
+}
