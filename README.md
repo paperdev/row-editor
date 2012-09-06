@@ -5,9 +5,19 @@ Row Editor
 
 Plugin for editing table rows with ajax data save.
 
+###Required html structure
 ````html
+...
+
 <td>
-	<span class="re-view">Value 3</span>
+	<span class="re-view">Some text</span>
+	<div class="re-editor">
+		<input type="text" name="text">
+	</div>
+</td>
+
+<td>
+	<span class="re-view">Value 1</span>
 	<div class="re-editor">
 		<select name="select">
 			<option value="Value 1">Value 1</option>
@@ -16,6 +26,8 @@ Plugin for editing table rows with ajax data save.
 		</select>
 	</div>
 </td>
+
+....
 ````
 
 ## Config:
