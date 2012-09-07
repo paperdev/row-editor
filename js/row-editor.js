@@ -1,3 +1,15 @@
+/*
+ * jQuery RowEditor Plugin
+ * version: 0.1 (2012-09-07)
+ *
+ * This document is licensed as free software under the terms of the
+ * MIT License: http://www.opensource.org/licenses/mit-license.php
+ *
+ * @author Rainum, rainum.ua@gmail.com
+ *
+ * Project repository: https://github.com/rainum/row-editor
+ */
+
 // Utility object creation support
 if (typeof Object.create !== 'function') {
     Object.create = function(obj) {
@@ -58,6 +70,10 @@ if (typeof Object.create !== 'function') {
         edit: function() {
             var self = this;
 
+            self.cells.each(function(i, cell) {
+                cell.editor.removeAttr('disabled');
+            });
+
             self.views.hide();
             self.btnEdit.hide();
             self.editors.show();
@@ -73,21 +89,16 @@ if (typeof Object.create !== 'function') {
         save: function() {
             var self = this;
 
-            self.cells.each(function(i, cell) {
-                cell.editor.attr('disabled', true);
-            });
-
             //Fire onSave callback
             if (typeof self.options.onSave === 'function') {
                 self.options.onSave.apply(self);
             }
 
-            //Refresh grid view if request successfully completed and fire onSaveComplete event
-            self.saveData().done(function() {
-                self.cells.each(function(i, cell) {
-                    cell.editor.removeAttr('disabled');
-                });
-
+            /*
+             * Refresh grid view if request successfully completed and fire onSaveComplete event
+             * Recommended to use .done() callback on production
+             */
+            self.saveData().always(function() {
                 self.refreshView();
 
                 if (typeof self.options.onSaveComplete === 'function') {
@@ -99,6 +110,10 @@ if (typeof Object.create !== 'function') {
                 self.views.show();
                 self.btnEdit.show();
             });
+
+            self.cells.each(function(i, cell) {
+                cell.editor.attr('disabled', true);
+            });
         },
 
         refreshView: function() {
@@ -106,11 +121,17 @@ if (typeof Object.create !== 'function') {
 
             //Refresh grid view after saving
             self.cells.each(function(i, cell) {
-                var val = cell.editor.is('input[type="checkbox"]')
-                    ? cell.editor.is(':checked')
-                        ? 'Yes'
-                        : 'No'
-                    : cell.editor.val();
+                var $editor = cell.editor,
+                    val = '';
+
+                if ($editor.is('[type="checkbox"]')) {
+                    val = $editor.is(':checked') ? 'Yes' : 'No'
+                } else if ($editor.is('[type="radio"]')) {
+                    val = $editor.filter(':checked').val();
+                } else {
+                    val = $editor.val();
+                }
+                
                 cell.view.text(val);
             });
 
@@ -141,13 +162,18 @@ if (typeof Object.create !== 'function') {
                 values = {};
 
             self.cells.each(function(i, cell) {
-                var $editor = cell.editor;
+                var $editor = cell.editor,
+                    val = null;
 
-                if ($editor.length) {
-                    values[$editor.attr('name')] = $editor.is('input[type="checkbox"]')
-                        ? $editor.is(':checked')
-                        : $editor.val();
+                if ($editor.is('[type="text"], select')) {
+                    val = $editor.val();
+                } else if ($editor.is('[type="radio"]')) {
+                    val = $editor.filter(':checked').val();
+                } else if ($editor.is('[type="checkbox"]')) {
+                    val = $editor.is(':checked');
                 }
+
+                if ($editor.length) values[$editor.attr('name')] = val;
             });
 
             return values;
@@ -173,15 +199,15 @@ if (typeof Object.create !== 'function') {
     };
 
     $.fn.rowEditor.options = {
-        editor: '.re-editor', //Cell editors wrap class
-        view: '.re-view', //Cell view element class
-        trigger: '.re-trigger', //Save and edit trigger element class
-        btnEdit: '<a href="#">Edit</a>', //Edit button html string (optional)
-        btnSave: '<a href="#">Save</a>', //Save button html string (optional)
-        apiUrl: 'index.html', //Url for posting data
-        setValues: true, //If true, RowEditor will be setting editors values automatically depending on view text (optional)
-        onEdit: null, //onEdit callback (optional)
-        onSave: null, //onSave callback (optional)
-        onSaveComplete: null //onSaveComplete callback (optional)
+        editor: '.editor',                 //Cell editors wrap class
+        view: '.view',                     //Cell view element class
+        trigger: '.trigger',               //Save and edit trigger element class
+        btnEdit: '<a href="#">Edit</a>',   //Edit button html string (optional)
+        btnSave: '<a href="#">Save</a>',   //Save button html string (optional)
+        apiUrl: '',                        //Url for posting data
+        setValues: true,                   //If true, RowEditor will be setting editors values automatically depending on view text (optional)
+        onEdit: null,                      //onEdit callback (optional)
+        onSave: null,                      //onSave callback (optional)
+        onSaveComplete: null               //onSaveComplete callback (optional)
     };
 })(jQuery);

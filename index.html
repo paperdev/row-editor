@@ -107,7 +107,12 @@
 
     <script>
         $(function() {
-            $('.editable-row').rowEditor();
+            $('.editable-row').rowEditor({
+                editor: '.re-editor',
+                view: '.re-view',
+                trigger: '.re-trigger',
+                apiUrl: ''
+            });
         });
     </script>
 </body>
