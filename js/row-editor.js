@@ -29,13 +29,15 @@ if (typeof Object.create !== 'function') {
             //Getting all options
             self.options = $.extend({}, $.fn.rowEditor.options, options);
 
+            self.isForm = !!self.row.closest('form').length;
+
             //Set all RowEditor fields
             self.trigger = self.row.find(self.options.trigger);
             self.views = self.row.find(self.options.view);
             self.editors = self.row.find(self.options.editor);
             self.btnEdit = $(self.options.btnEdit);
             self.btnSave = $(self.options.btnSave);
-            self.cells = self.row.find('td');
+            self.cells = self.isForm ? self.row : self.row.find('td');
 
             //Find cells view and editor and add it to cell object
             self.cells.each(function(i, cell) {
@@ -199,9 +201,9 @@ if (typeof Object.create !== 'function') {
     };
 
     $.fn.rowEditor.options = {
-        editor: '.editor',                 //Cell editors wrap class
-        view: '.view',                     //Cell view element class
-        trigger: '.trigger',               //Save and edit trigger element class
+        editor: '.editor',                 //Row editors wrap selector
+        view: '.view',                     //Row view element selector
+        trigger: '.trigger',               //Element selector for rendering Save and Edit controls
         btnEdit: '<a href="#">Edit</a>',   //Edit button html string (optional)
         btnSave: '<a href="#">Save</a>',   //Save button html string (optional)
         apiUrl: '',                        //Url for posting data

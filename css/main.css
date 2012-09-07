@@ -8,22 +8,50 @@
     margin: 20px auto 0;
 }
 
-.row-edit-table {
+#content .row-edit-table {
     width: 100%;
 }
 
-.row-edit-table tr th {
+#content .row-edit-table tr th {
     text-align: left;
 }
 
-.row-edit-table tr th,
-.row-edit-table tr td {
+#content .row-edit-table tr th,
+#content .row-edit-table tr td {
     padding: 5px;
     vertical-align: middle;
 }
 
-.row-edit-table tbody tr:nth-child(odd) {
+#content .row-edit-table tbody tr:nth-child(odd) {
     background: #eee;
+}
+
+#content form {
+    margin-bottom: 50px;
+    width: 400px;
+}
+
+#content form p:first-child {
+    border-top: 1px solid #d1d1d1;
+}
+
+#content form p {
+    border-bottom: 1px solid #d1d1d1;
+    padding: 5px 5px;
+    margin: 0;
+    min-height: 22px;
+    line-height: 22px;
+}
+
+#content form p > label {
+    width: 100px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#content form p .re-view {
+    display: inline-block;
+    min-width: 65px;
 }
 
 /* ==========================================================================

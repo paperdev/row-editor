@@ -3,31 +3,32 @@ Row Editor
 
 ## Description
 
-Plugin for editing table rows with ajax data save.
+Plugin for inline editing table or form rows. Provides saving data with ajax requests.
 
-###Required html structure
+###Required HTML structure for form
 ````html
+<p class="editable">
+    <label>Text field:</label>
+    <span class="view">Some text</span>
+    <span class="editor">
+        <input type="text" name="text">
+    </span>
+    <span class="trigger"></span>
+</p>
+````
+
+###Required HTML structure for table
+````html
+<td>
+    <span class="view">Some text</span>
+    <span class="editor">
+        <input type="text" name="text">
+    </span>
+</td>
+
 ...
 
-<td>
-    <span class="re-view">Some text</span>
-    <div class="re-editor">
-        <input type="text" name="text">
-    </div>
-</td>
-
-<td>
-    <span class="re-view">Value 1</span>
-    <div class="re-editor">
-        <select name="select">
-            <option value="Value 1">Value 1</option>
-            <option value="Value 2">Value 2</option>
-            <option value="Value 3">Value 3</option>
-        </select>
-    </div>
-</td>
-
-....
+<td class="trigger"></td>
 ````
 
 ## Config:
