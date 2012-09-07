@@ -13,6 +13,8 @@
 // Utility object creation support
 if (typeof Object.create !== 'function') {
     Object.create = function(obj) {
+        'use strict';
+
         function F() {}
         F.prototype = obj;
         return new F();
@@ -48,8 +50,13 @@ if (typeof Object.create !== 'function') {
                 cell.view = $(cell).find(self.options.view);
             });
 
-            !self.editors.is(':hidden') && self.editors.hide(); //Check if editor block not hidden in css
-            self.options.setValues && self.setValues();
+            if (!self.editors.is(':hidden')) { //Check if editor block not hidden in css
+                self.editors.hide();
+            }
+
+            if (self.options.setValues) {
+                self.setValues();
+            }
 
             self.buildControls();
         },
@@ -138,13 +145,13 @@ if (typeof Object.create !== 'function') {
                     val = '';
 
                 if ($editor.is('[type="checkbox"]')) {
-                    val = $editor.is(':checked') ? 'Yes' : 'No'
+                    val = $editor.is(':checked') ? 'Yes' : 'No';
                 } else if ($editor.is('[type="radio"]')) {
                     val = $editor.filter(':checked').val();
                 } else {
                     val = $editor.val();
                 }
-                
+
                 cell.view.text(val);
             });
 
@@ -186,7 +193,9 @@ if (typeof Object.create !== 'function') {
                     val = $editor.is(':checked');
                 }
 
-                if ($editor.length) values[$editor.attr('name')] = val;
+                if ($editor.length) {
+                    values[$editor.attr('name')] = val;
+                }
             });
 
             return values;
