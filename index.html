@@ -19,28 +19,28 @@
         <form action="/">
             <p class="editable-row">
                 <label>Text field:</label>
-                <span class="re-view">Some text</span>
-                <span class="re-editor">
+                <span class="view">Some text</span>
+                <span class="editor">
                     <input type="text" name="text">
                 </span>
-                <span class="re-trigger"></span>
+                <span class="trigger"></span>
             </p>
             <p class="editable-row">
                 <label>Select field:</label>
-                <span class="re-view">Value 1</span>
-                <span class="re-editor">
+                <span class="view">Value 1</span>
+                <span class="editor">
                      <select name="select">
                          <option value="Value 1">Value 1</option>
                          <option value="Value 2">Value 2</option>
                          <option value="Value 3">Value 3</option>
                      </select>
                 </span>
-                <span class="re-trigger"></span>
+                <span class="trigger"></span>
             </p>
             <p class="editable-row">
                 <label>Radio field:</label>
-                <span class="re-view">Choise 1</span>
-                <span class="re-editor">
+                <span class="view">Choise 1</span>
+                <span class="editor">
                     <label for="rad5">Choise 1
                         <input id="rad5" type="radio" name="radio-5" value="Choise 1">
                     </label>
@@ -48,15 +48,15 @@
                         <input id="rad6" type="radio" name="radio-5" value="Choise 2">
                     </label>
                 </span>
-                <span class="re-trigger"></span>
+                <span class="trigger"></span>
             </p>
             <p class="editable-row">
                 <label>Checkbox field:</label>
-                <span class="re-view">No</span>
-                <span class="re-editor">
+                <span class="view">No</span>
+                <span class="editor">
                     <input type="checkbox" name="checkbox">
                 </span>
-                <span class="re-trigger"></span>
+                <span class="trigger"></span>
             </p>
         </form>
 
@@ -75,14 +75,14 @@
             <tbody>
                 <tr class="editable-row">
                     <td>
-                        <span class="re-view">Some text</span>
-                        <span class="re-editor">
+                        <span class="view">Some text</span>
+                        <span class="editor">
                             <input type="text" name="text">
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">Value 3</span>
-                        <span class="re-editor">
+                        <span class="view">Value 3</span>
+                        <span class="editor">
                             <select name="select">
                                 <option value="Value 1">Value 1</option>
                                 <option value="Value 2">Value 2</option>
@@ -91,8 +91,8 @@
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">Choise 1</span>
-                        <span class="re-editor">
+                        <span class="view">Choise 1</span>
+                        <span class="editor">
                             <label for="rad1">Choise 1</label>
                             <input id="rad1" type="radio" name="radio-1" value="Choise 1">
                             <label for="rad2">Choise 2</label>
@@ -100,23 +100,23 @@
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">No</span>
-                        <span class="re-editor">
+                        <span class="view">No</span>
+                        <span class="editor">
                             <input type="checkbox" name="checkbox" disabled>
                         </span>
                     </td>
-                    <td class="re-trigger"></td>
+                    <td class="trigger"></td>
                 </tr>
                 <tr class="editable-row">
                     <td>
-                        <span class="re-view">Some text</span>
-                        <span class="re-editor">
+                        <span class="view">Some text</span>
+                        <span class="editor">
                             <input type="text" name="text">
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">Value 2</span>
-                        <span class="re-editor">
+                        <span class="view">Value 2</span>
+                        <span class="editor">
                             <select name="select">
                                 <option value="Value 1">Value 1</option>
                                 <option value="Value 2">Value 2</option>
@@ -125,8 +125,8 @@
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">Choise 2</span>
-                        <span class="re-editor">
+                        <span class="view">Choise 2</span>
+                        <span class="editor">
                             <label for="rad3">Choise 1</label>
                             <input id="rad3" type="radio" name="radio-2" value="Choise 1">
                             <label for="rad4">Choise 2</label>
@@ -134,12 +134,12 @@
                         </span>
                     </td>
                     <td>
-                        <span class="re-view">Yes</span>
-                        <span class="re-editor">
+                        <span class="view">Yes</span>
+                        <span class="editor">
                             <input type="checkbox" name="checkbox">
                         </span>
                     </td>
-                    <td class="re-trigger"></td>
+                    <td class="trigger"></td>
                 </tr>
             </tbody>
         </table>
@@ -152,9 +152,9 @@
     <script>
         $(function() {
             $('.editable-row').rowEditor({
-                editor: '.re-editor',
-                view: '.re-view',
-                trigger: '.re-trigger',
+                editor: '.editor',
+                view: '.view',
+                trigger: '.trigger',
                 apiUrl: ''
             });
         });

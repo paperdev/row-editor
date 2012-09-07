@@ -49,7 +49,7 @@
     font-weight: bold;
 }
 
-#content form p .re-view {
+#content form p .view {
     display: inline-block;
     min-width: 65px;
 }
@@ -58,6 +58,6 @@
    Row Editor styles
    ========================================================================== */
 
-.re-editor {
+.editor {
     display: none;
 }
