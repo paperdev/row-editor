@@ -20,6 +20,8 @@ if (typeof Object.create !== 'function') {
 }
 
 (function($) {
+    'use strict';
+
     var RowEditor = {
         init: function(options, elem) {
             var self = this;
@@ -37,6 +39,7 @@ if (typeof Object.create !== 'function') {
             self.editors = self.row.find(self.options.editor);
             self.btnEdit = $(self.options.btnEdit);
             self.btnSave = $(self.options.btnSave);
+            self.btnReset = $(self.options.btnReset);
             self.cells = self.isForm ? self.row : self.row.find('td');
 
             //Find cells view and editor and add it to cell object
@@ -55,8 +58,9 @@ if (typeof Object.create !== 'function') {
         buildControls: function() {
             var self = this;
 
-            self.trigger.append(self.btnEdit, self.btnSave);
+            self.trigger.append(self.btnEdit, self.btnSave, self.btnReset);
             self.btnSave.hide();
+            self.btnReset.hide();
             self.bindEvents();
         },
 
@@ -66,6 +70,7 @@ if (typeof Object.create !== 'function') {
 
             self.btnEdit.on('click', $.proxy(self.edit, self));
             self.btnSave.on('click', $.proxy(self.save, self));
+            self.btnReset.on('click', $.proxy(self.reset, self));
         },
 
         //Begin editing
@@ -80,6 +85,7 @@ if (typeof Object.create !== 'function') {
             self.btnEdit.hide();
             self.editors.show();
             self.btnSave.show();
+            self.btnReset.show();
 
             //Fire onEdit callback
             if (typeof self.options.onEdit === 'function') {
@@ -109,6 +115,7 @@ if (typeof Object.create !== 'function') {
 
                 self.editors.hide();
                 self.btnSave.hide();
+                self.btnReset.hide();
                 self.views.show();
                 self.btnEdit.show();
             });
@@ -116,6 +123,10 @@ if (typeof Object.create !== 'function') {
             self.cells.each(function(i, cell) {
                 cell.editor.attr('disabled', true);
             });
+        },
+
+        reset: function() {
+            this.setValues();
         },
 
         refreshView: function() {
@@ -201,15 +212,16 @@ if (typeof Object.create !== 'function') {
     };
 
     $.fn.rowEditor.options = {
-        editor: '.editor',                 //Row editors wrap selector
-        view: '.view',                     //Row view element selector
-        trigger: '.trigger',               //Element selector for rendering Save and Edit controls
-        btnEdit: '<a href="#">Edit</a>',   //Edit button html string (optional)
-        btnSave: '<a href="#">Save</a>',   //Save button html string (optional)
-        apiUrl: '',                        //Url for posting data
-        setValues: true,                   //If true, RowEditor will be setting editors values automatically depending on view text (optional)
-        onEdit: null,                      //onEdit callback (optional)
-        onSave: null,                      //onSave callback (optional)
-        onSaveComplete: null               //onSaveComplete callback (optional)
+        editor: '.editor',                               //Row editors wrap selector
+        view: '.view',                                   //Row view element selector
+        trigger: '.trigger',                             //Element selector for rendering Save and Edit controls
+        btnEdit: '<input type="button" value="Edit">',   //Edit button html string (optional)
+        btnSave: '<input type="button" value="Save">',   //Save button html string (optional)
+        btnReset: '<input type="button" value="Reset">', //Reset button html string (optional)
+        apiUrl: '',                                      //Url for posting data
+        setValues: true,                                 //If true, RowEditor will be setting editors values automatically depending on view text (optional)
+        onEdit: null,                                    //onEdit callback (optional)
+        onSave: null,                                    //onSave callback (optional)
+        onSaveComplete: null                             //onSaveComplete callback (optional)
     };
 })(jQuery);
