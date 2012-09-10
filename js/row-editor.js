@@ -78,6 +78,15 @@ if (typeof Object.create !== 'function') {
             self.btnEdit.on('click', $.proxy(self.edit, self));
             self.btnSave.on('click', $.proxy(self.save, self));
             self.btnReset.on('click', $.proxy(self.reset, self));
+
+            self.cells.each(function(i, cell) {
+                $(cell.editor).on('keypress', function(e) {
+                    if (e.keyCode === 13) {
+                        self.save();
+                        e.preventDefault();
+                    }
+                });
+            });
         },
 
         //Begin editing
